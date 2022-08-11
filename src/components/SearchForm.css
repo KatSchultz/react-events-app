@@ -1,0 +1,24 @@
+form {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 8px;
+}
+
+.criteriaSection {
+	margin-bottom: 10px;
+}
+
+#zipcode {
+	margin-left: 8px;
+}
+
+#eventdate {
+	margin-left: 8px;
+}
+
+button {
+	width: 80px;
+	height: 35px;
+	border-radius: 5px;
+}
