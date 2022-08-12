@@ -4,8 +4,19 @@ export interface Events {
 
 export interface Event {
   id: string;
-  keyword: string;
-  postalCode: string;
-  date: string;
+  _embedded: {
+    venues: {postalCode: string}[]
+  }
+  dates: {
+    start: {
+      localDate: string;
+    }
+  };
   name: string;
+}
+
+export interface Filter {
+  includeFamily?: string;
+  date?: string;
+  postalCode?: string;
 }

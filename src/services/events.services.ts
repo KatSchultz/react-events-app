@@ -1,11 +1,11 @@
 import axios from "axios";
 import { config } from "../config";
-import { Event } from "../types";
+import { Event, Filter } from "../types";
 
 export function fetchAllEvents() {
   return axios
   .get(`https://app.ticketmaster.com/discovery/v2/events?apikey=jjGKnYeiW8tmLlckQd0Rq6S5mG7Gt2by`)
-  .then(response => response.data._embedded.events);
+  .then(response => response);
 }
 
 export function fetchEventById(id: string) {
@@ -14,16 +14,22 @@ export function fetchEventById(id: string) {
   .then(response => response)
 }
 
-export function fetchEventByKeyword() {
+export function filterEvents({includeFamily = 'no', date = '', postalCode = ''}: Filter) {
   return axios
-  .get(`https://app.ticketmaster.com/discovery/v2/events?keyword=football&apikey=jjGKnYeiW8tmLlckQd0Rq6S5mG7Gt2by`)
+  .get(`https://app.ticketmaster.com/discovery/v2/events?apikey=jjGKnYeiW8tmLlckQd0Rq6S5mG7Gt2by`, {
+    params: {
+      includeFamily,
+      startDateTime: date,
+      postalCode,
+    }
+  })
   .then(response => response)
 }
 
 export function fetchEventByZipCode(postalCode: string) {
   return axios
   .get(`https://app.ticketmaster.com/discovery/v2/events?postalCode=${postalCode}&apikey=jjGKnYeiW8tmLlckQd0Rq6S5mG7Gt2by`)
-  .then(response => response.data._embedded.events)
+  .then(response => response)
 }
 
 //Katie's Key = jjGKnYeiW8tmLlckQd0Rq6S5mG7Gt2by
