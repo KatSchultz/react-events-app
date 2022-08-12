@@ -18,14 +18,16 @@ export default function SingleEvent({ event }: Props) {
 
   return (
     <div className="single-event">
-      <div className="date">
-        <div>date</div>
-        <div>day</div>
-        <div>time</div>
-      </div>
-      <div className="event-details">
-        <div className="event-name">{event.name}</div>
-        <div>Location</div>
+      <div className="date-details-container">
+        <div className="date">
+          <div>date</div>
+          <div>day</div>
+          <div>time</div>
+        </div>
+        <div className="event-details">
+          <div className="event-name">{event.name}</div>
+          <div>Location</div>
+        </div>
       </div>
       <div className="button" onClick={bucketClickHandler}>
         <div>

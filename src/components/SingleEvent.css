@@ -2,28 +2,34 @@
   width: 80vw;
   display: flex;
   justify-content: space-between;
-  align-content: center;
-  align-items: stretch;
+  /* align-content: center; */
+  /* align-items: stretch; */
 
-  border: solid 4px #184d47;
-  border-radius: 10rem;
+  border-bottom: solid 3px #184d47;
   margin: 0.5rem;
   padding: 0.6rem;
 
   background-color: white;
   color: #184d47;
-  box-shadow: 0px 5px 20px #184d47;
+  box-shadow: 0px 5px 20px #d6efc7;
+}
+
+.date-details-container {
+  width: 70%;
 }
 
 .date {
+  display: flex;
+  flex-direction: row;
   color: #184d47;
-  background-color: #d6efc7;
+  /* background-color: #d6efc7; */
   padding: 0.5rem 1rem;
-  border-radius: 5rem 0rem 0rem 5rem;
-  width: 20%;
+  border-bottom: solid 1px #96bb7c;
+
+  /* width: 20%; */
 }
 .event-details {
-  width: 60%;
+  width: 100%;
   padding: 0 0.5rem;
 }
 .event-name {
@@ -34,19 +40,17 @@
 .button {
   font-weight: 700;
   font-size: 1.2rem;
-  padding: 10px 20px;
-  width: 20%;
   text-align: center;
+  width: 20%;
+  padding: 1rem;
 
   color: #184d47;
   background-color: #fad586;
-  border-radius: 0 5rem 5rem 0;
   border-style: none;
 }
 
 colorPalette {
   color: #184d47;
-
   color: #96bb7c;
   color: #d6efc7;
   color: #fad586;
