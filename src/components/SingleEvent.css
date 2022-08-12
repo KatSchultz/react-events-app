@@ -5,13 +5,13 @@
   align-content: center;
   align-items: stretch;
 
-  border: solid 4px #fad586;
+  border: solid 4px #184d47;
   border-radius: 10rem;
   margin: 0.5rem;
   padding: 0.6rem;
 
-  background-color: #184d47;
-  color: #fad586;
+  background-color: white;
+  color: #184d47;
   box-shadow: 0px 5px 20px #184d47;
 }
 
