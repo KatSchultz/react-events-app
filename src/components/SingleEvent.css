@@ -1,0 +1,53 @@
+.single-event {
+  width: 80vw;
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  align-items: stretch;
+
+  border: solid 4px #fad586;
+  border-radius: 10rem;
+  margin: 0.5rem;
+  padding: 0.6rem;
+
+  background-color: #184d47;
+  color: #fad586;
+  box-shadow: 0px 5px 20px #184d47;
+}
+
+.date {
+  color: #184d47;
+  background-color: #d6efc7;
+  padding: 0.5rem 1rem;
+  border-radius: 5rem 0rem 0rem 5rem;
+  width: 20%;
+}
+.event-details {
+  width: 60%;
+  padding: 0 0.5rem;
+}
+.event-name {
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+.button {
+  font-weight: 700;
+  font-size: 1.2rem;
+  padding: 10px 20px;
+  width: 20%;
+  text-align: center;
+
+  color: #184d47;
+  background-color: #fad586;
+  border-radius: 0 5rem 5rem 0;
+  border-style: none;
+}
+
+colorPalette {
+  color: #184d47;
+
+  color: #96bb7c;
+  color: #d6efc7;
+  color: #fad586;
+}
