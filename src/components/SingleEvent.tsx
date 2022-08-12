@@ -1,14 +1,9 @@
 import React from "react";
 import "./SingleEvent.css";
+import { Event } from "../types";
 
 interface Props {
-  event: {
-    name: string;
-    type: string;
-    id: string;
-    test: boolean;
-    url: string;
-  };
+  event: Event;
 }
 
 export default function SingleEvent({ event }: Props) {

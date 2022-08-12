@@ -6,7 +6,6 @@ export default function SearchPage() {
   return (
     <div>
       <SearchForm />
-      <SearchResultsDisplay />
     </div>
   );
 }

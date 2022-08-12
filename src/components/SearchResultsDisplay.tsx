@@ -1,32 +1,13 @@
 import React from "react";
+import { Event } from "../types";
 
 import SingleEvent from "./SingleEvent";
 
-const events = [
-  {
-    name: "Boston Red Sox vs. New York Yankees",
-    type: "event",
-    id: "Z7r9jZ1AdFN4I",
-    test: false,
-    url: "https://www.ticketmaster.com/event/Z7r9jZ1AdFN4I",
-  },
-  {
-    name: "Boston Red Sox vs. New York Yankees",
-    type: "event",
-    id: "Z7r9jZ1AdFN4M",
-    test: false,
-    url: "https://www.ticketmaster.com/event/Z7r9jZ1AdFN4M",
-  },
-  {
-    name: "Boston Red Sox vs. New York Yankees",
-    type: "event",
-    id: "Z7r9jZ1AdFNbk",
-    test: false,
-    url: "https://www.ticketmaster.com/event/Z7r9jZ1AdFNbk",
-  },
-];
+interface Props {
+  events: Event[];
+}
 
-export default function SearchResultsDisplay() {
+export default function SearchResultsDisplay({ events }: Props) {
   return (
     <div
       style={{
