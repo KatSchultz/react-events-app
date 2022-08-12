@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./SearchForm.css";
 import SearchResultsDisplay from "./SearchResultsDisplay";
-import { fetchAllEvents, fetchEventByZipCode, fetchEventById, fetchEventByKeyword } from "../services/events.services";
+import { fetchAllEvents, fetchEventByZipCode, fetchEventById, filterEvents } from "../services/events.services";
 import { Event } from "../types";
 
 export default function SearchForm() {
@@ -12,15 +12,15 @@ export default function SearchForm() {
   	const [eventId, setEventId] = useState('');
 
   	useEffect(() => {
-		// getEvents();
+		getEvents();
 		// getEventById();
 		// filterEventsByKeyword();
-		filterEventsByZipCode();
+		// filterEventsByZipCode();
   	}, []);
 
-	// function getEvents() {
-	// 	fetchAllEvents().then((response) => console.log(response));
-	// }
+	function getEvents() {
+		fetchAllEvents().then((response) => console.log(response.data));
+	}
 
 	// function getEventById() {
 	// 	fetchEventById(eventId).then((response) => console.log(response.data))
@@ -41,11 +41,13 @@ export default function SearchForm() {
 
 	function handleDateChange(e: React.ChangeEvent<HTMLInputElement>) {
 		setEventDate(e.target.value);
+		console.log(e.target.value);
 	}
 
 	function handleSubmitButton(e: React.FormEvent) {
 		e.preventDefault();
-		clearFormValues();
+		filterEvents({postalCode: zipCode, date: eventDate}).then(response => console.log(response))
+		// clearFormValues();
 	}
 
 	function handleFamilyFriendlyChange(e: React.ChangeEvent<HTMLInputElement>) {
