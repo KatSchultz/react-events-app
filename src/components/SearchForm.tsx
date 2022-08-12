@@ -1,14 +1,42 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./SearchForm.css";
 import SearchResultsDisplay from "./SearchResultsDisplay";
+import { fetchAllEvents, fetchEventByZipCode, fetchEventById, fetchEventByKeyword } from "../services/events.services";
+import { Event } from "../types";
 
 export default function SearchForm() {
-	const [zipCode, setZipCode] = useState<string>("48082");
+	const [zipCode, setZipCode] = useState("");
 	const [eventDate, setEventDate] = useState<string>("2022-08-24");
 	const [familyFriendly, setFamilyFriendly] = useState<boolean>(false);
+	const [events, setEvents] = useState();
+  	const [eventId, setEventId] = useState('');
+
+  	useEffect(() => {
+		// getEvents();
+		// getEventById();
+		// filterEventsByKeyword();
+		filterEventsByZipCode();
+  	}, []);
+
+	// function getEvents() {
+	// 	fetchAllEvents().then((response) => console.log(response));
+	// }
+
+	// function getEventById() {
+	// 	fetchEventById(eventId).then((response) => console.log(response.data))
+	// }
+
+	// function filterEventsByKeyword() {
+	// 	fetchEventByKeyword().then(response => console.log(response.data._embedded.events))
+	// }
+
+	function filterEventsByZipCode() {
+		fetchEventByZipCode(zipCode).then(response => console.log(response))
+	}
 
 	function handleZipCodeChange(e: React.ChangeEvent<HTMLInputElement>) {
 		setZipCode(e.target.value);
+		console.log(zipCode)
 	}
 
 	function handleDateChange(e: React.ChangeEvent<HTMLInputElement>) {
