@@ -36,7 +36,7 @@ export default function SearchResultsDisplay() {
       }}
     >
       {events.map((event) => (
-        <SingleEvent event={event} />
+        <SingleEvent event={event} key={event.id} />
       ))}
     </div>
   );
