@@ -42,14 +42,14 @@ export default function SearchForm() {
 
 	function handleZipCodeChange(e: React.ChangeEvent<HTMLInputElement>) {
 		setZipCode(e.target.value);
-		// console.log(zipCode);
 	}
 
 	function handleDateChange(e: React.ChangeEvent<HTMLInputElement>) {
 		setEventDate(e.target.value);
-		setSearchDate(eventDate + "T00:00:01Z");
-		// console.log(e.target.value);
-		console.log(searchDate);
+		setSearchDate(e.target.value + "T00:00:01Z");
+		console.log(`Value: ${e.target.value}`);
+		console.log(`Event date: ${eventDate}`);
+		console.log(`Search date: ${searchDate}`);
 	}
 
 	function handleSubmitButton(e: React.FormEvent) {
