@@ -13,7 +13,9 @@ export default function SearchForm() {
 	const [zipCode, setZipCode] = useState("");
 	const [eventDate, setEventDate] = useState<string>("");
 	const [searchDate, setSearchDate] = useState<string>("");
-	const [familyFriendly, setFamilyFriendly] = useState<boolean>(false);
+	const [familyFriendlyValue, setFamilyFriendlyValue] =
+		useState<boolean>(false);
+	const [familyFriendly, setFamilyFriendly] = useState("");
 	const [events, setEvents] = useState([]);
 	const [eventId, setEventId] = useState("");
 
@@ -22,9 +24,9 @@ export default function SearchForm() {
 		// getEventById();
 		// filterEventsByKeyword();
 		// filterEventsByZipCode();
-		console.log(`Event date: ${eventDate}`);
-		console.log(`Search date: ${searchDate}`);
-	}, [eventDate, searchDate]);
+		console.log(familyFriendly);
+		console.log(familyFriendlyValue);
+	}, [familyFriendly, familyFriendlyValue]);
 
 	function getEvents() {
 		fetchAllEvents().then((response) => console.log(response.data));
@@ -51,24 +53,28 @@ export default function SearchForm() {
 		setSearchDate(e.target.value + "T00:00:01Z");
 	}
 
+	function handleFamilyFriendlyChange(e: React.ChangeEvent<HTMLInputElement>) {
+		setFamilyFriendlyValue(e.target.checked);
+		e.target.checked ? setFamilyFriendly("only") : setFamilyFriendly("no");
+	}
+
 	function handleSubmitButton(e: React.FormEvent) {
 		e.preventDefault();
-		console.log(searchDate);
-		filterEvents({ postalCode: zipCode, date: searchDate }).then((response) => {
+		filterEvents({
+			postalCode: zipCode,
+			date: searchDate,
+			includeFamily: familyFriendly,
+		}).then((response) => {
 			console.log(response);
 			setEvents(response.data._embedded.events);
 		});
 		// clearFormValues();
 	}
 
-	function handleFamilyFriendlyChange(e: React.ChangeEvent<HTMLInputElement>) {
-		setFamilyFriendly(e.target.checked);
-	}
-
 	function clearFormValues() {
 		setZipCode("");
 		setEventDate("");
-		setFamilyFriendly(false);
+		setFamilyFriendlyValue(false);
 	}
 
 	return (
@@ -106,7 +112,7 @@ export default function SearchForm() {
 						type="checkbox"
 						name="familyFriendly"
 						id="familyFriendly"
-						checked={familyFriendly}
+						checked={familyFriendlyValue}
 						onChange={handleFamilyFriendlyChange}
 					/>
 				</div>
