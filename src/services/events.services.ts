@@ -27,6 +27,7 @@ export function filterEvents({
   includeFamily = "",
   date = "",
   postalCode = "",
+  classificationName = "",
 }: Filter) {
   return axios
     .get(
@@ -36,6 +37,7 @@ export function filterEvents({
           includeFamily,
           startDateTime: date,
           postalCode,
+          classificationName,
         },
       }
     )

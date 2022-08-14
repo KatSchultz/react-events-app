@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, ReactHTML } from "react";
 import "./SearchForm.css";
 import SearchResultsDisplay from "./SearchResultsDisplay";
 import {
@@ -20,6 +20,7 @@ export default function SearchForm({ changeEvents }: Props) {
   const [familyFriendlyValue, setFamilyFriendlyValue] =
     useState<boolean>(false);
   const [familyFriendly, setFamilyFriendly] = useState("");
+  const [classificationName, setClassificationName] = useState("");
   const [eventId, setEventId] = useState("");
 
   useEffect(() => {
@@ -64,14 +65,20 @@ export default function SearchForm({ changeEvents }: Props) {
     e.target.checked ? setFamilyFriendly("only") : setFamilyFriendly("no");
   }
 
+  function handleGenreChange(e: React.ChangeEvent<HTMLSelectElement>) {
+    setClassificationName(e.target.value);
+  }
+
   function handleSubmitButton(e: React.FormEvent) {
     e.preventDefault();
     filterEvents({
       postalCode: zipCode,
       date: searchDate,
       includeFamily: familyFriendly,
+      classificationName: classificationName,
     }).then((response) => {
       changeEvents(response.data._embedded.events);
+      console.log(classificationName);
     });
     // clearFormValues();
   }
@@ -120,6 +127,15 @@ export default function SearchForm({ changeEvents }: Props) {
             checked={familyFriendlyValue}
             onChange={handleFamilyFriendlyChange}
           />
+        </div>
+        <div className="classification">
+          <label>Genre</label>
+          <select id="classificationName" onChange={handleGenreChange}>
+            <option value="">Any</option>
+            <option value="sports">Sports</option>
+            <option value="music">Music</option>
+            <option value="comedy">Comedy</option>
+          </select>
         </div>
 
         <button type="submit" onClick={handleSubmitButton}>

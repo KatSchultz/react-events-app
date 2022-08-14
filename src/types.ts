@@ -22,4 +22,5 @@ export interface Filter {
   includeFamily?: string;
   date?: string;
   postalCode?: string;
+  classificationName: string;
 }
