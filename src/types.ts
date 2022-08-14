@@ -5,12 +5,13 @@ export interface Events {
 export interface Event {
   id: string;
   _embedded: {
-    venues: {postalCode: string}[]
-  }
+    venues: { postalCode: string }[];
+  };
   dates: {
     start: {
       localDate: string;
-    }
+      dateTime: string;
+    };
   };
   name: string;
 }
