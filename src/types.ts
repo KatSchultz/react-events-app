@@ -14,6 +14,7 @@ export interface Event {
     };
   };
   name: string;
+  url: string;
 }
 
 export interface Filter {

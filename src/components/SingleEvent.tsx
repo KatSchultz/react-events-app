@@ -33,6 +33,9 @@ export default function SingleEvent({ event, addBucketListEvent }: Props) {
         <div className="event-details">
           <div className="event-name">{event.name}</div>
           <div>Location</div>
+          <a href={event.url} target="blank">
+            See Tickets
+          </a>
         </div>
       </div>
       <div className="button" onClick={() => bucketClickHandler(event)}>

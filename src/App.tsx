@@ -13,6 +13,13 @@ function App() {
     setBucketList([...bucketList, event]);
   }
 
+  function removeBucketListEvent(id: string) {
+    const list = [...bucketList];
+    const index = list.findIndex((item) => item.id === id);
+    list.splice(index, 1);
+    setBucketList(list);
+  }
+
   return (
     <div className="App">
       <header>
@@ -30,7 +37,12 @@ function App() {
         />
         <Route
           path="/bucket-list"
-          element={<BucketList bucketList={bucketList} />}
+          element={
+            <BucketList
+              bucketList={bucketList}
+              removeEvent={removeBucketListEvent}
+            />
+          }
         />
       </Routes>
     </div>

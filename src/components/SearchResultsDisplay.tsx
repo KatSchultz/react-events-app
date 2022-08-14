@@ -12,6 +12,8 @@ export default function SearchResultsDisplay({
   events,
   addBucketListEvent,
 }: Props) {
+  console.log(events[0]);
+
   const displayEvents = [...events];
   displayEvents.sort(
     (a, b) =>

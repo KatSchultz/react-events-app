@@ -10,10 +10,10 @@ import {
 import { Event } from "../types";
 
 interface Props {
-  addBucketListEvent: (event: Event) => void;
+  changeEvents: (events: Event[]) => void;
 }
 
-export default function SearchForm({ addBucketListEvent }: Props) {
+export default function SearchForm({ changeEvents }: Props) {
   const [zipCode, setZipCode] = useState("");
   const [eventDate, setEventDate] = useState<string>("");
   const [searchDate, setSearchDate] = useState<string>("");
@@ -69,8 +69,7 @@ export default function SearchForm({ addBucketListEvent }: Props) {
       date: searchDate,
       includeFamily: familyFriendly,
     }).then((response) => {
-      console.log(response);
-      setEvents(response.data._embedded.events);
+      changeEvents(response.data._embedded.events);
     });
     // clearFormValues();
   }
@@ -125,10 +124,6 @@ export default function SearchForm({ addBucketListEvent }: Props) {
           Search
         </button>
       </form>
-      <SearchResultsDisplay
-        events={events}
-        addBucketListEvent={addBucketListEvent}
-      />
     </div>
   );
 }
