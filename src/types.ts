@@ -5,7 +5,19 @@ export interface Events {
 export interface Event {
   id: string;
   _embedded: {
-    venues: { postalCode: string }[];
+    venues: { 
+      address: {
+        line1: string
+      },
+      city: {
+        name: string
+      },
+      state: {
+        name: string
+      },
+      name: string,
+      postalCode: string
+    }[];
   };
   dates: {
     start: {

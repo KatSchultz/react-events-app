@@ -2,14 +2,12 @@
   width: 80vw;
   display: flex;
   justify-content: space-between;
-  /* align-content: center; */
-  /* align-items: stretch; */
 
-  border-bottom: solid 3px #184d47;
+  border: solid 3px #184d47;
   margin: 0.5rem;
   padding: 0.6rem;
 
-  background-color: white;
+  background-color: #d6efc7;
   color: #184d47;
   box-shadow: 0px 5px 20px #d6efc7;
 }
@@ -35,18 +33,30 @@
 .event-name {
   font-size: 1.6rem;
   font-weight: 700;
+  cursor: pointer;
+}
+
+.event-name:hover {
+  color: #96bb7c;
 }
 
 .button {
   font-weight: 700;
   font-size: 1.2rem;
-  text-align: center;
   width: 20%;
   padding: 1rem;
-
+  display: flex;
+  justify-content: center;
+  align-items: center;
   color: #184d47;
   background-color: #fad586;
   border-style: none;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.button:hover {
+  background-color: #96bb7c;
 }
 
 colorPalette {

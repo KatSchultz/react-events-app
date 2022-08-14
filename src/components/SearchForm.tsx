@@ -28,13 +28,13 @@ export default function SearchForm({ changeEvents }: Props) {
     // getEventById();
     // filterEventsByKeyword();
     // filterEventsByZipCode();
-    console.log(familyFriendly);
-    console.log(familyFriendlyValue);
+    // console.log(familyFriendly);
+    // console.log(familyFriendlyValue);
   }, [familyFriendly, familyFriendlyValue]);
 
   function getEvents() {
     fetchAllEvents().then((response) => {
-      // console.log(response.data);
+      console.log(response.data);
       changeEvents(response.data._embedded.events);
     });
   }

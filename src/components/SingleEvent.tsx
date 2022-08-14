@@ -27,6 +27,7 @@ export default function SingleEvent({ event, addBucketListEvent }: Props) {
   const day = date.getDate();
   const month = date.toLocaleString("en-US", { month: "short" });
   const year = date.getFullYear();
+  const venue = event._embedded.venues[0];
 
   return (
     <div className="single-event">
@@ -41,7 +42,7 @@ export default function SingleEvent({ event, addBucketListEvent }: Props) {
           <div className="event-name" onClick={goToEventDetails}>
             {event.name}
           </div>
-          <div>Location</div>
+          <div>Location: {venue.name} <br /> {venue.address.line1} <br /> {venue.city.name}, {venue.state.name}</div>
           <a href={event.url} target="blank">
             See Tickets
           </a>
