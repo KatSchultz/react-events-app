@@ -31,6 +31,13 @@ export default function BucketListItem({ event, removeEvent }: Props) {
         </div>
         <div className="event-details">
           <div className="event-name">{event.name}</div>
+          <div className="image">
+            <img
+              src={event.images[0].url}
+              alt=""
+              style={{ maxWidth: 250 + "px" }}
+            />
+          </div>
           <div>Location</div>
           <a href={event.url} target="blank">
             See Tickets

@@ -12,7 +12,11 @@ export default function BucketList({ bucketList, removeEvent }: Props) {
     <div>
       <div>Bucket List</div>
       {bucketList.map((event) => (
-        <BucketListItem event={event} removeEvent={removeEvent} />
+        <BucketListItem
+          key={event.id}
+          event={event}
+          removeEvent={removeEvent}
+        />
       ))}
     </div>
   );

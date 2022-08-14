@@ -33,7 +33,10 @@ export default function SearchForm({ changeEvents }: Props) {
   }, [familyFriendly, familyFriendlyValue]);
 
   function getEvents() {
-    fetchAllEvents().then((response) => console.log(response.data));
+    fetchAllEvents().then((response) => {
+      console.log(response.data);
+      changeEvents(response.data._embedded.events);
+    });
   }
 
   // function getEventById() {

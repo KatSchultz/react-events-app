@@ -15,6 +15,7 @@ export interface Event {
   };
   name: string;
   url: string;
+  images: { url: string }[];
 }
 
 export interface Filter {
