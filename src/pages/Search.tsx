@@ -5,15 +5,15 @@ import { Event } from "../types";
 
 interface Props {
   addBucketListEvent: (event: Event) => void;
+  changeEvents: (events: Event[]) => void;
+  events: Event[];
 }
 
-export default function SearchPage({ addBucketListEvent }: Props) {
-  const [events, setEvents] = useState<Event[]>([]);
-
-  function changeEvents(events: Event[]) {
-    setEvents(events);
-  }
-
+export default function SearchPage({
+  addBucketListEvent,
+  events,
+  changeEvents,
+}: Props) {
   return (
     <div>
       <SearchForm changeEvents={changeEvents} />

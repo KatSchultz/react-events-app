@@ -20,7 +20,6 @@ export default function SearchForm({ changeEvents }: Props) {
   const [familyFriendlyValue, setFamilyFriendlyValue] =
     useState<boolean>(false);
   const [familyFriendly, setFamilyFriendly] = useState("");
-  const [events, setEvents] = useState([]);
   const [eventId, setEventId] = useState("");
 
   useEffect(() => {
@@ -34,7 +33,7 @@ export default function SearchForm({ changeEvents }: Props) {
 
   function getEvents() {
     fetchAllEvents().then((response) => {
-      console.log(response.data);
+      // console.log(response.data);
       changeEvents(response.data._embedded.events);
     });
   }

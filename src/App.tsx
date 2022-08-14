@@ -5,12 +5,21 @@ import BucketList from "./pages/BucketList";
 
 import Search from "./pages/Search";
 import { Event } from "./types";
+import EventDetails from "./components/EventDetails";
+import PageNotFound from "./components/PageNotFound";
 
 function App() {
   const [bucketList, setBucketList] = useState<Event[]>([]);
+  const [events, setEvents] = useState<Event[]>([]);
+
+  function changeEvents(events: Event[]) {
+    setEvents(events);
+  }
 
   function addBucketListEvent(event: Event) {
-    setBucketList([...bucketList, event]);
+    if (!bucketList.find((item) => item.id === event.id)) {
+      setBucketList([...bucketList, event]);
+    }
   }
 
   function removeBucketListEvent(id: string) {
@@ -23,7 +32,7 @@ function App() {
   return (
     <div className="App">
       <header>
-        <h1>Event Bucket</h1>
+        <h1>Event Explorer</h1>
         <nav>
           <Link to="/">Home</Link>
           <Link to="/bucket-list">Bucket List</Link>
@@ -33,7 +42,13 @@ function App() {
       <Routes>
         <Route
           path="/"
-          element={<Search addBucketListEvent={addBucketListEvent} />}
+          element={
+            <Search
+              events={events}
+              addBucketListEvent={addBucketListEvent}
+              changeEvents={changeEvents}
+            />
+          }
         />
         <Route
           path="/bucket-list"
@@ -44,6 +59,8 @@ function App() {
             />
           }
         />
+        <Route path="/event/:id" element={<EventDetails />} />
+        <Route path="/not-found" element={<PageNotFound />} />
       </Routes>
     </div>
   );

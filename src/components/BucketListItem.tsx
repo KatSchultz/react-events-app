@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { Event } from "../types";
 
 interface Props {
@@ -7,6 +8,8 @@ interface Props {
 }
 
 export default function BucketListItem({ event, removeEvent }: Props) {
+  const navigate = useNavigate();
+
   const date = new Date(event.dates.start.dateTime);
   const time = date.toLocaleTimeString("en-US", {
     hour: "numeric",
@@ -20,6 +23,10 @@ export default function BucketListItem({ event, removeEvent }: Props) {
     removeEvent(event.id);
   }
 
+  function goToEventDetails() {
+    navigate(`/event/${event.id}`);
+  }
+
   return (
     <div className="single-event">
       <div className="date-details-container">
@@ -30,7 +37,9 @@ export default function BucketListItem({ event, removeEvent }: Props) {
           <div>{time}</div>
         </div>
         <div className="event-details">
-          <div className="event-name">{event.name}</div>
+          <div className="event-name" onClick={goToEventDetails}>
+            {event.name}
+          </div>
           <div className="image">
             <img
               src={event.images[0].url}

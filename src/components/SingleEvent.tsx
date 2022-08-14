@@ -1,6 +1,7 @@
 import React from "react";
 import "./SingleEvent.css";
 import { Event } from "../types";
+import { useNavigate } from "react-router-dom";
 
 interface Props {
   event: Event;
@@ -8,8 +9,14 @@ interface Props {
 }
 
 export default function SingleEvent({ event, addBucketListEvent }: Props) {
+  const navigate = useNavigate();
+
   function bucketClickHandler(event: Event) {
     addBucketListEvent(event);
+  }
+
+  function goToEventDetails() {
+    navigate(`/event/${event.id}`);
   }
 
   const date = new Date(event.dates.start.dateTime);
@@ -31,7 +38,9 @@ export default function SingleEvent({ event, addBucketListEvent }: Props) {
           <div>{time}</div>
         </div>
         <div className="event-details">
-          <div className="event-name">{event.name}</div>
+          <div className="event-name" onClick={goToEventDetails}>
+            {event.name}
+          </div>
           <div>Location</div>
           <a href={event.url} target="blank">
             See Tickets
