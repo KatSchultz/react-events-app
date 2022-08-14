@@ -3,11 +3,15 @@ import "./App.css";
 import { Link, Route, Routes } from "react-router-dom";
 import BucketList from "./pages/BucketList";
 
-
 import Search from "./pages/Search";
+import { Event } from "./types";
 
 function App() {
-  
+  const [bucketList, setBucketList] = useState<Event[]>([]);
+
+  function addBucketListEvent(event: Event) {
+    setBucketList([...bucketList, event]);
+  }
 
   return (
     <div className="App">
@@ -20,8 +24,14 @@ function App() {
       </header>
 
       <Routes>
-        <Route path="/" element={<Search />} />
-        <Route path="/bucket-list" element={<BucketList />} />
+        <Route
+          path="/"
+          element={<Search addBucketListEvent={addBucketListEvent} />}
+        />
+        <Route
+          path="/bucket-list"
+          element={<BucketList bucketList={bucketList} />}
+        />
       </Routes>
     </div>
   );

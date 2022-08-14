@@ -2,128 +2,135 @@ import React, { useState, useEffect } from "react";
 import "./SearchForm.css";
 import SearchResultsDisplay from "./SearchResultsDisplay";
 import {
-	fetchAllEvents,
-	fetchEventByZipCode,
-	fetchEventById,
-	filterEvents,
+  fetchAllEvents,
+  fetchEventByZipCode,
+  fetchEventById,
+  filterEvents,
 } from "../services/events.services";
 import { Event } from "../types";
 
-export default function SearchForm() {
-	const [zipCode, setZipCode] = useState("");
-	const [eventDate, setEventDate] = useState<string>("");
-	const [searchDate, setSearchDate] = useState<string>("");
-	const [familyFriendlyValue, setFamilyFriendlyValue] =
-		useState<boolean>(false);
-	const [familyFriendly, setFamilyFriendly] = useState("");
-	const [events, setEvents] = useState([]);
-	const [eventId, setEventId] = useState("");
+interface Props {
+  addBucketListEvent: (event: Event) => void;
+}
 
-	useEffect(() => {
-		getEvents();
-		// getEventById();
-		// filterEventsByKeyword();
-		// filterEventsByZipCode();
-		console.log(familyFriendly);
-		console.log(familyFriendlyValue);
-	}, [familyFriendly, familyFriendlyValue]);
+export default function SearchForm({ addBucketListEvent }: Props) {
+  const [zipCode, setZipCode] = useState("");
+  const [eventDate, setEventDate] = useState<string>("");
+  const [searchDate, setSearchDate] = useState<string>("");
+  const [familyFriendlyValue, setFamilyFriendlyValue] =
+    useState<boolean>(false);
+  const [familyFriendly, setFamilyFriendly] = useState("");
+  const [events, setEvents] = useState([]);
+  const [eventId, setEventId] = useState("");
 
-	function getEvents() {
-		fetchAllEvents().then((response) => console.log(response.data));
-	}
+  useEffect(() => {
+    getEvents();
+    // getEventById();
+    // filterEventsByKeyword();
+    // filterEventsByZipCode();
+    console.log(familyFriendly);
+    console.log(familyFriendlyValue);
+  }, [familyFriendly, familyFriendlyValue]);
 
-	// function getEventById() {
-	// 	fetchEventById(eventId).then((response) => console.log(response.data))
-	// }
+  function getEvents() {
+    fetchAllEvents().then((response) => console.log(response.data));
+  }
 
-	// function filterEventsByKeyword() {
-	// 	fetchEventByKeyword().then(response => console.log(response.data._embedded.events))
-	// }
+  // function getEventById() {
+  // 	fetchEventById(eventId).then((response) => console.log(response.data))
+  // }
 
-	function filterEventsByZipCode() {
-		fetchEventByZipCode(zipCode).then((response) => console.log(response));
-	}
+  // function filterEventsByKeyword() {
+  // 	fetchEventByKeyword().then(response => console.log(response.data._embedded.events))
+  // }
 
-	function handleZipCodeChange(e: React.ChangeEvent<HTMLInputElement>) {
-		setZipCode(e.target.value);
-	}
+  function filterEventsByZipCode() {
+    fetchEventByZipCode(zipCode).then((response) => console.log(response));
+  }
 
-	function handleDateChange(e: React.ChangeEvent<HTMLInputElement>) {
-		setEventDate(e.target.value);
-		setSearchDate(e.target.value + "T00:00:01Z");
-	}
+  function handleZipCodeChange(e: React.ChangeEvent<HTMLInputElement>) {
+    setZipCode(e.target.value);
+  }
 
-	function handleFamilyFriendlyChange(e: React.ChangeEvent<HTMLInputElement>) {
-		setFamilyFriendlyValue(e.target.checked);
-		e.target.checked ? setFamilyFriendly("only") : setFamilyFriendly("no");
-	}
+  function handleDateChange(e: React.ChangeEvent<HTMLInputElement>) {
+    setEventDate(e.target.value);
+    setSearchDate(e.target.value + "T00:00:01Z");
+  }
 
-	function handleSubmitButton(e: React.FormEvent) {
-		e.preventDefault();
-		filterEvents({
-			postalCode: zipCode,
-			date: searchDate,
-			includeFamily: familyFriendly,
-		}).then((response) => {
-			console.log(response);
-			setEvents(response.data._embedded.events);
-		});
-		// clearFormValues();
-	}
+  function handleFamilyFriendlyChange(e: React.ChangeEvent<HTMLInputElement>) {
+    setFamilyFriendlyValue(e.target.checked);
+    e.target.checked ? setFamilyFriendly("only") : setFamilyFriendly("no");
+  }
 
-	function clearFormValues() {
-		setZipCode("");
-		setEventDate("");
-		setFamilyFriendlyValue(false);
-	}
+  function handleSubmitButton(e: React.FormEvent) {
+    e.preventDefault();
+    filterEvents({
+      postalCode: zipCode,
+      date: searchDate,
+      includeFamily: familyFriendly,
+    }).then((response) => {
+      console.log(response);
+      setEvents(response.data._embedded.events);
+    });
+    // clearFormValues();
+  }
 
-	return (
-		<div>
-			SearchForm
-			<form action="">
-				<div className="criteriaSection">
-					<label htmlFor="zipcode">
-						Enter zip code to find events near you
-					</label>
-					<input
-						type="number"
-						name="zipCode"
-						id="zipcode"
-						placeholder="48082"
-						onChange={handleZipCodeChange}
-						value={zipCode}
-					/>
-				</div>
+  function clearFormValues() {
+    setZipCode("");
+    setEventDate("");
+    setFamilyFriendlyValue(false);
+  }
 
-				<div className="criteriaSection">
-					<label htmlFor="eventdate">Select date</label>
-					<input
-						type="date"
-						name="eventDate"
-						id="eventdate"
-						value={eventDate}
-						onChange={handleDateChange}
-					/>
-				</div>
+  return (
+    <div>
+      SearchForm
+      <form action="">
+        <div className="criteriaSection">
+          <label htmlFor="zipcode">
+            Enter zip code to find events near you
+          </label>
+          <input
+            type="number"
+            name="zipCode"
+            id="zipcode"
+            placeholder="48082"
+            onChange={handleZipCodeChange}
+            value={zipCode}
+          />
+        </div>
 
-				<div className="criteriaSection">
-					<label htmlFor="familyFriendly">Family friendly only</label>
-					<input
-						type="checkbox"
-						name="familyFriendly"
-						id="familyFriendly"
-						checked={familyFriendlyValue}
-						onChange={handleFamilyFriendlyChange}
-					/>
-				</div>
+        <div className="criteriaSection">
+          <label htmlFor="eventdate">Select date</label>
+          <input
+            type="date"
+            name="eventDate"
+            id="eventdate"
+            value={eventDate}
+            onChange={handleDateChange}
+          />
+        </div>
 
-				<button type="submit" onClick={handleSubmitButton}>
-					Search
-				</button>
-			</form>
-			<SearchResultsDisplay events={events} />
-		</div>
-	);
+        <div className="criteriaSection">
+          <label htmlFor="familyFriendly">Family friendly only</label>
+          <input
+            type="checkbox"
+            name="familyFriendly"
+            id="familyFriendly"
+            checked={familyFriendlyValue}
+            onChange={handleFamilyFriendlyChange}
+          />
+        </div>
+
+        <button type="submit" onClick={handleSubmitButton}>
+          Search
+        </button>
+      </form>
+      <SearchResultsDisplay
+        events={events}
+        addBucketListEvent={addBucketListEvent}
+      />
+    </div>
+  );
 }
 
 // Dates, venue

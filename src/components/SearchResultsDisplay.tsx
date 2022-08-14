@@ -5,17 +5,19 @@ import SingleEvent from "./SingleEvent";
 
 interface Props {
   events: Event[];
+  addBucketListEvent: (event: Event) => void;
 }
 
-export default function SearchResultsDisplay({ events }: Props) {
+export default function SearchResultsDisplay({
+  events,
+  addBucketListEvent,
+}: Props) {
   const displayEvents = [...events];
   displayEvents.sort(
     (a, b) =>
       new Date(a.dates.start.dateTime).getTime() -
       new Date(b.dates.start.dateTime).getTime()
   );
-  console.log(events);
-  console.log(displayEvents);
 
   return (
     <div
@@ -26,7 +28,11 @@ export default function SearchResultsDisplay({ events }: Props) {
       }}
     >
       {displayEvents.map((event) => (
-        <SingleEvent event={event} key={event.id} />
+        <SingleEvent
+          event={event}
+          key={event.id}
+          addBucketListEvent={addBucketListEvent}
+        />
       ))}
     </div>
   );

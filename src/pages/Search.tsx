@@ -1,11 +1,16 @@
 import React from "react";
 import SearchForm from "../components/SearchForm";
 import SearchResultsDisplay from "../components/SearchResultsDisplay";
+import { Event } from "../types";
 
-export default function SearchPage() {
+interface Props {
+  addBucketListEvent: (event: Event) => void;
+}
+
+export default function SearchPage({ addBucketListEvent }: Props) {
   return (
     <div>
-      <SearchForm />
+      <SearchForm addBucketListEvent={addBucketListEvent} />
     </div>
   );
 }

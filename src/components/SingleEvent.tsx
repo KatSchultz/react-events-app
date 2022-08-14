@@ -4,15 +4,19 @@ import { Event } from "../types";
 
 interface Props {
   event: Event;
+  addBucketListEvent: (event: Event) => void;
 }
 
-export default function SingleEvent({ event }: Props) {
-  function bucketClickHandler() {
-    // setBucketList(...BucketList, event)
+export default function SingleEvent({ event, addBucketListEvent }: Props) {
+  function bucketClickHandler(event: Event) {
+    addBucketListEvent(event);
   }
 
   const date = new Date(event.dates.start.dateTime);
-  // const time = date.getUTCHours();
+  const time = date.toLocaleTimeString("en-US", {
+    hour: "numeric",
+    minute: "2-digit",
+  });
   const day = date.getDate();
   const month = date.toLocaleString("en-US", { month: "short" });
   const year = date.getFullYear();
@@ -22,15 +26,16 @@ export default function SingleEvent({ event }: Props) {
       <div className="date-details-container">
         <div className="date">
           <div>
-            {month} {day}, {year}
+            {month} {day}, {year},
           </div>
+          <div>{time}</div>
         </div>
         <div className="event-details">
           <div className="event-name">{event.name}</div>
           <div>Location</div>
         </div>
       </div>
-      <div className="button" onClick={bucketClickHandler}>
+      <div className="button" onClick={() => bucketClickHandler(event)}>
         <div>
           Add to <br />
           Bucket List
