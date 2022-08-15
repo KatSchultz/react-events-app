@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from "react";
 import "./SingleEvent.css";
 import { Event } from "../types";
 import { useNavigate } from "react-router-dom";
@@ -14,26 +13,11 @@ export default function SingleEvent({
   bucketList,
   addBucketListEvent,
 }: Props) {
-  const [onBucketList, setOnBucketList] = useState(false);
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   checkBucketList();
-  // }, [onBucketList]);
-
-  // function checkBucketList() {
-  //   const bucketListStatus = bucketList.find((item) => (item.id = event.id));
-  //   console.log(bucketListStatus);
-  //   if (!bucketListStatus) {
-  //     setOnBucketList(false);
-  //   } else {
-  //     setOnBucketList(true);
-  //   }
-  //   console.log("bucket list check", onBucketList);
-  // }
+  const onBucketList = bucketList.find((item) => item.id === event.id);
 
   function bucketClickHandler(event: Event) {
-    setOnBucketList(true);
     addBucketListEvent(event);
   }
 
@@ -73,7 +57,7 @@ export default function SingleEvent({
           </a>
         </div>
       </div>
-      {onBucketList === false ? (
+      {onBucketList === undefined ? (
         <div className="button" onClick={() => bucketClickHandler(event)}>
           <div>
             Add to <br />

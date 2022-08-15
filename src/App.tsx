@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useState } from "react";
 import "./App.css";
 import { Link, Route, Routes } from "react-router-dom";
 import BucketList from "./pages/BucketList";
@@ -6,7 +6,6 @@ import BucketList from "./pages/BucketList";
 import Search from "./pages/Search";
 import { Event } from "./types";
 import EventDetails from "./components/EventDetails";
-import PageNotFound from "./components/PageNotFound";
 
 function App() {
   const [bucketList, setBucketList] = useState<Event[]>([]);
@@ -62,9 +61,14 @@ function App() {
         />
         <Route
           path="/event/:id"
-          element={<EventDetails bucketList={bucketList} />}
+          element={
+            <EventDetails
+              bucketList={bucketList}
+              addBucketListEvent={addBucketListEvent}
+              removeBucketListEvent={removeBucketListEvent}
+            />
+          }
         />
-        <Route path="/not-found" element={<PageNotFound />} />
       </Routes>
     </div>
   );

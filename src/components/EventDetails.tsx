@@ -1,16 +1,20 @@
-import React, { useEffect, useState } from "react";
-import { useNavigate, useParams, useSearchParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { fetchEventById } from "../services/events.services";
 import { Event } from "../types";
 
 interface Props {
   bucketList: Event[];
+  addBucketListEvent: (event: Event) => void;
+  removeBucketListEvent: (id: string) => void;
 }
 
-export default function EventDetails({ bucketList }: Props) {
+export default function EventDetails({
+  bucketList,
+  addBucketListEvent,
+  removeBucketListEvent,
+}: Props) {
   const { id } = useParams();
-  const [searchParams] = useSearchParams();
-  const navigate = useNavigate();
   const [detailEvent, setDetailEvent] = useState<Event>();
 
   useEffect(() => {
@@ -19,29 +23,13 @@ export default function EventDetails({ bucketList }: Props) {
 
   function getEvent(id: string) {
     fetchEventById(id).then((response) => {
-      console.log(response);
       setDetailEvent(response.data._embedded.events[0]);
     });
   }
 
-  //   console.log(searchParams);
-  //   const detailEvent = events.find((event) => event.id === id);
-
-  //   function goToPageNotFound() {
-  //     navigate("/not-found");
-  //   }
-
-  //   if (!detailEvent) {
-  //     goToPageNotFound();
-  //   }
-
-  //   console.log("ID: ", id);
-  //   console.log(searchParams.get("id"));
-  //   console.log(detailEvent);
-
   if (detailEvent) {
     const onBucketList = bucketList.find((item) => item.id === detailEvent.id);
-    const date = new Date(detailEvent!.dates.start.dateTime);
+    const date = new Date(detailEvent.dates.start.dateTime);
     const time = date.toLocaleTimeString("en-US", {
       hour: "numeric",
       minute: "2-digit",
@@ -50,7 +38,6 @@ export default function EventDetails({ bucketList }: Props) {
     const month = date.toLocaleString("en-US", { month: "short" });
     const year = date.getFullYear();
 
-    console.log("detail event: ", detailEvent);
     return (
       <div>
         <div>{detailEvent.name}</div>
@@ -61,6 +48,21 @@ export default function EventDetails({ bucketList }: Props) {
           <div>{time}</div>
         </div>
         <div>On Your Bucket List: {onBucketList ? "Yes" : "No"} </div>
+        <div>
+          {onBucketList ? (
+            <button onClick={() => removeBucketListEvent(detailEvent.id)}>
+              Remove From
+              <br />
+              Bucket List
+            </button>
+          ) : (
+            <button onClick={() => addBucketListEvent(detailEvent)}>
+              Add To
+              <br />
+              Bucket List
+            </button>
+          )}
+        </div>
 
         <div>Info: {detailEvent.info}</div>
         <div>

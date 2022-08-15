@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import SearchForm from "../components/SearchForm";
 import SearchResultsDisplay from "../components/SearchResultsDisplay";
 import { Event } from "../types";

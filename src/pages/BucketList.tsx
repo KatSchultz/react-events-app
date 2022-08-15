@@ -1,4 +1,3 @@
-import React from "react";
 import BucketListItem from "../components/BucketListItem";
 import { Event } from "../types";
 
@@ -11,6 +10,8 @@ export default function BucketList({ bucketList, removeEvent }: Props) {
   return (
     <div>
       <div>Bucket List</div>
+      {bucketList.length === 0 && <div>Nothing on your Bucket List!</div>}
+
       {bucketList.map((event) => (
         <BucketListItem
           key={event.id}
