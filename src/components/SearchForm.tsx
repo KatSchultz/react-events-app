@@ -92,8 +92,9 @@ export default function SearchForm({ changeEvents }: Props) {
   return (
     <div>
       SearchForm
-      <form action="">
+      <form action="" className="bg-white">
         <div className="criteriaSection">
+          <h1 className="text-orange-600">HELLO</h1>
           <label htmlFor="zipcode">
             Enter zip code to find events near you
           </label>

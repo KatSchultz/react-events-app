@@ -30,46 +30,48 @@ function App() {
 
   return (
     <div className="App">
-      <header>
-        <h1>Event Explorer</h1>
-        <nav>
-          <Link to="/">Event Search</Link>
-          <Link to="/bucket-list">Bucket List</Link>
-        </nav>
-      </header>
+      <div className="app-content-holder bg-white w-10/12">
+        <header>
+          <h1>Event Explorer</h1>
+          <nav>
+            <Link to="/">Event Search</Link>
+            <Link to="/bucket-list">Bucket List</Link>
+          </nav>
+        </header>
 
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <Search
-              events={events}
-              addBucketListEvent={addBucketListEvent}
-              bucketList={bucketList}
-              changeEvents={changeEvents}
-            />
-          }
-        />
-        <Route
-          path="/bucket-list"
-          element={
-            <BucketList
-              bucketList={bucketList}
-              removeEvent={removeBucketListEvent}
-            />
-          }
-        />
-        <Route
-          path="/event/:id"
-          element={
-            <EventDetails
-              bucketList={bucketList}
-              addBucketListEvent={addBucketListEvent}
-              removeBucketListEvent={removeBucketListEvent}
-            />
-          }
-        />
-      </Routes>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <Search
+                events={events}
+                addBucketListEvent={addBucketListEvent}
+                bucketList={bucketList}
+                changeEvents={changeEvents}
+              />
+            }
+          />
+          <Route
+            path="/bucket-list"
+            element={
+              <BucketList
+                bucketList={bucketList}
+                removeEvent={removeBucketListEvent}
+              />
+            }
+          />
+          <Route
+            path="/event/:id"
+            element={
+              <EventDetails
+                bucketList={bucketList}
+                addBucketListEvent={addBucketListEvent}
+                removeBucketListEvent={removeBucketListEvent}
+              />
+            }
+          />
+        </Routes>
+      </div>
     </div>
   );
 }
