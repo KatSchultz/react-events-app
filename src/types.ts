@@ -5,18 +5,18 @@ export interface Events {
 export interface Event {
   id: string;
   _embedded: {
-    venues: { 
+    venues: {
       address: {
-        line1: string
-      },
+        line1: string;
+      };
       city: {
-        name: string
-      },
+        name: string;
+      };
       state: {
-        name: string
-      },
-      name: string,
-      postalCode: string
+        name: string;
+      };
+      name: string;
+      postalCode: string;
     }[];
   };
   dates: {
@@ -25,6 +25,7 @@ export interface Event {
       dateTime: string;
     };
   };
+  info: string;
   name: string;
   url: string;
   images: { url: string }[];

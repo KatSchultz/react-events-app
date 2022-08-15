@@ -3,7 +3,11 @@ import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { fetchEventById } from "../services/events.services";
 import { Event } from "../types";
 
-export default function EventDetails() {
+interface Props {
+  bucketList: Event[];
+}
+
+export default function EventDetails({ bucketList }: Props) {
   const { id } = useParams();
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
@@ -36,6 +40,7 @@ export default function EventDetails() {
   //   console.log(detailEvent);
 
   if (detailEvent) {
+    const onBucketList = bucketList.find((item) => item.id === detailEvent.id);
     const date = new Date(detailEvent!.dates.start.dateTime);
     const time = date.toLocaleTimeString("en-US", {
       hour: "numeric",
@@ -48,15 +53,21 @@ export default function EventDetails() {
     console.log("detail event: ", detailEvent);
     return (
       <div>
-        <div>Display is working</div>
+        <div>{detailEvent.name}</div>
         <div className="time">
           <div>
             {month} {day}, {year}
           </div>
           <div>{time}</div>
         </div>
+        <div>On Your Bucket List: {onBucketList ? "Yes" : "No"} </div>
 
-        <div>{detailEvent?.name}</div>
+        <div>Info: {detailEvent.info}</div>
+        <div>
+          <a href={detailEvent.url} target="blank">
+            See Tickets
+          </a>
+        </div>
         <img src={detailEvent?.images[0].url} alt="" />
       </div>
     );

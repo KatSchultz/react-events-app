@@ -129,7 +129,7 @@ export default function SearchForm({ changeEvents }: Props) {
           />
         </div>
         <div className="classification">
-          <label>Genre</label>
+          <label>Categories</label>
           <select id="classificationName" onChange={handleGenreChange}>
             <option value="">Any</option>
             <option value="sports">Sports</option>

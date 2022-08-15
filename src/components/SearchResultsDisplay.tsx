@@ -5,11 +5,13 @@ import SingleEvent from "./SingleEvent";
 
 interface Props {
   events: Event[];
+  bucketList: Event[];
   addBucketListEvent: (event: Event) => void;
 }
 
 export default function SearchResultsDisplay({
   events,
+  bucketList,
   addBucketListEvent,
 }: Props) {
   const displayEvents = [...events];
@@ -30,6 +32,7 @@ export default function SearchResultsDisplay({
       {displayEvents.map((event) => (
         <SingleEvent
           event={event}
+          bucketList={bucketList}
           key={event.id}
           addBucketListEvent={addBucketListEvent}
         />

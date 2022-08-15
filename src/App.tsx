@@ -34,7 +34,7 @@ function App() {
       <header>
         <h1>Event Explorer</h1>
         <nav>
-          <Link to="/">Home</Link>
+          <Link to="/">Event Search</Link>
           <Link to="/bucket-list">Bucket List</Link>
         </nav>
       </header>
@@ -46,6 +46,7 @@ function App() {
             <Search
               events={events}
               addBucketListEvent={addBucketListEvent}
+              bucketList={bucketList}
               changeEvents={changeEvents}
             />
           }
@@ -59,7 +60,10 @@ function App() {
             />
           }
         />
-        <Route path="/event/:id" element={<EventDetails />} />
+        <Route
+          path="/event/:id"
+          element={<EventDetails bucketList={bucketList} />}
+        />
         <Route path="/not-found" element={<PageNotFound />} />
       </Routes>
     </div>
