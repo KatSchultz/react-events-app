@@ -29,8 +29,8 @@ function App() {
   }
 
   return (
-    <div className="App">
-      <div className="app-content-holder bg-white w-10/12">
+    <div className="App flex justify-center content-center items-center">
+      <div className="app-content-holder bg-white w-10/12 m-auto">
         <header>
           <h1>Event Explorer</h1>
           <nav>
