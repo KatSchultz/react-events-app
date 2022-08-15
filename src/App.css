@@ -1,3 +1,18 @@
 .App {
+  min-height: 100vh;
   text-align: center;
+  background-image: url(./images/crowd.PNG);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  background-size: cover;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
 }

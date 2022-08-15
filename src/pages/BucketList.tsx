@@ -8,7 +8,7 @@ interface Props {
 
 export default function BucketList({ bucketList, removeEvent }: Props) {
   return (
-    <div>
+    <div className="container">
       <div>Bucket List</div>
       {bucketList.length === 0 && <div>Nothing on your Bucket List!</div>}
 
