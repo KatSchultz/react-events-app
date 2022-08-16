@@ -14,15 +14,22 @@ interface Props {
 }
 
 export default function SearchForm({ changeEvents }: Props) {
-  const [zipCode, setZipCode] = useState("");
-  const [eventDate, setEventDate] = useState<string>("");
-  const [searchDate, setSearchDate] = useState<string>("");
+  const [userInput, setUserInput] = useState({
+    zipCode: "",
+    eventDate: "",
+    searchDate: "",
+    classificationName: "",
+    keyword: "",
+  });
+  // const [zipCode, setZipCode] = useState("");
+  // const [eventDate, setEventDate] = useState<string>("");
+  // const [searchDate, setSearchDate] = useState<string>("");
   const [familyFriendlyValue, setFamilyFriendlyValue] =
     useState<boolean>(false);
   const [familyFriendly, setFamilyFriendly] = useState("");
-  const [classificationName, setClassificationName] = useState("");
-  const [eventId, setEventId] = useState("");
-  const [keyword, setKeyword] = useState('');
+  // const [classificationName, setClassificationName] = useState("");
+  // const [eventId, setEventId] = useState("");
+  // const [keyword, setKeyword] = useState("");
 
   useEffect(() => {
     getEvents();
@@ -48,51 +55,82 @@ export default function SearchForm({ changeEvents }: Props) {
   // 	fetchEventByKeyword().then(response => console.log(response.data._embedded.events))
   // }
 
-  function filterEventsByZipCode() {
-    fetchEventByZipCode(zipCode).then((response) => console.log(response));
-  }
+  // function filterEventsByZipCode() {
+  //   fetchEventByZipCode(zipCode).then((response) => console.log(response));
+  // }
 
-  function handleZipCodeChange(e: React.ChangeEvent<HTMLInputElement>) {
-    setZipCode(e.target.value);
-  }
+  // function handleZipCodeChange(e: React.ChangeEvent<HTMLInputElement>) {
+  //   setUserInput({
+  //     ...userInput,
+  //     zipCode: e.target.value,
+  //   });
+  //   // setZipCode(e.target.value);
+  // }
 
-  function handleDateChange(e: React.ChangeEvent<HTMLInputElement>) {
-    setEventDate(e.target.value);
-    setSearchDate(e.target.value + "T00:00:01Z");
-  }
+  // function handleDateChange(e: React.ChangeEvent<HTMLInputElement>) {
+  //   setUserInput({
+  //     ...userInput,
+  //     eventDate: e.target.value,
+  //     searchDate: e.target.value + "T00:00:01Z",
+  //   });
+  //   // setEventDate(e.target.value);
+  //   // setSearchDate(e.target.value + "T00:00:01Z");
+  // }
 
-  function handleFamilyFriendlyChange(e: React.ChangeEvent<HTMLInputElement>) {
-    setFamilyFriendlyValue(e.target.checked);
-    e.target.checked ? setFamilyFriendly("only") : setFamilyFriendly("no");
-  }
+  // function handleFamilyFriendlyChange(e: React.ChangeEvent<HTMLInputElement>) {
+  //   setFamilyFriendlyValue(e.target.checked);
+  //   e.target.checked ? setFamilyFriendly("only") : setFamilyFriendly("no");
+  // }
 
   function handleGenreChange(e: React.ChangeEvent<HTMLSelectElement>) {
-    setClassificationName(e.target.value);
+    setUserInput({
+      ...userInput,
+      classificationName: e.target.value,
+    });
+    // setClassificationName(e.target.value);
   }
 
-  function handleKeywordChange(e: React.ChangeEvent<HTMLInputElement>) {
-    setKeyword(e.target.value);
+  // function handleKeywordChange(e: React.ChangeEvent<HTMLInputElement>) {
+  //   setUserInput({
+  //     ...userInput,
+  //     keyword: e.target.value,
+  //   });
+  //   // setKeyword(e.target.value);
+  // }
+
+  function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
+    setUserInput({ ...userInput, ...{ [e.target.name]: e.target.value } });
+    // console.log(userInput.zipCode);
   }
 
   function handleSubmitButton(e: React.FormEvent) {
     e.preventDefault();
     filterEvents({
-      postalCode: zipCode,
-      date: searchDate,
-      includeFamily: familyFriendly,
-      classificationName: classificationName,
-      keyword: keyword,
+      postalCode: userInput.zipCode,
+      date: userInput.searchDate,
+      // includeFamily:  userInput.familyFriendly,
+      classificationName: userInput.classificationName,
+      keyword: userInput.keyword,
     }).then((response) => {
       changeEvents(response.data._embedded.events);
-      console.log(classificationName);
+      // console.log(events);
+      console.log(response);
     });
     // clearFormValues();
   }
 
   function clearFormValues() {
-    setZipCode("");
-    setEventDate("");
-    setFamilyFriendlyValue(false);
+    setUserInput({
+      zipCode: "",
+      eventDate: "",
+      searchDate: "",
+      classificationName: "",
+      keyword: "",
+    });
+
+    // setZipCode("");
+    // setEventDate("");
+    // setFamilyFriendlyValue(false);
   }
 
   return (
@@ -108,8 +146,8 @@ export default function SearchForm({ changeEvents }: Props) {
             name="zipCode"
             id="zipcode"
             placeholder="48082"
-            onChange={handleZipCodeChange}
-            value={zipCode}
+            onChange={handleChange}
+            value={userInput.zipCode}
           />
         </div>
 
@@ -119,24 +157,31 @@ export default function SearchForm({ changeEvents }: Props) {
             type="date"
             name="eventDate"
             id="eventdate"
-            value={eventDate}
-            onChange={handleDateChange}
+            value={userInput.eventDate}
+            onChange={handleChange}
           />
         </div>
 
         <div className="criteriaSection">
-          <label htmlFor="familyFriendly" className="p-2">Family friendly only</label>
+          <label htmlFor="familyFriendly" className="p-2">
+            Family friendly only
+          </label>
           <input
             type="checkbox"
             name="familyFriendly"
             id="familyFriendly"
             checked={familyFriendlyValue}
-            onChange={handleFamilyFriendlyChange}
+            onChange={handleChange}
           />
         </div>
         <div className="criteriaSection">
           <label>Categories</label>
-          <select id="classificationName" className='text-center' onChange={handleGenreChange}>
+          <select
+            id="classificationName"
+            className="text-center"
+            name="classificationName"
+            onChange={handleGenreChange}
+          >
             <option value="">Any</option>
             <option value="sports">Sports</option>
             <option value="music">Music</option>
@@ -145,23 +190,27 @@ export default function SearchForm({ changeEvents }: Props) {
         </div>
 
         <div className="criteriaSection">
-          <label className='p-2' htmlFor="keywordSearch">Enter a keyword</label>
-          <input 
+          <label className="p-2" htmlFor="keywordSearch">
+            Enter a keyword
+          </label>
+          <input
             className="keyword-text"
-            type='text'
-            name='keyword'
-            id='keyword'
-            value={keyword}
-            onChange={handleKeywordChange}
+            type="text"
+            name="keyword"
+            id="keyword"
+            value={userInput.keyword}
+            onChange={handleChange}
           />
         </div>
-
       </form>
 
-      <button className='p-1 mb-2 hover:bg-[#184d47] hover:text-white' type="submit" onClick={handleSubmitButton}>
+      <button
+        className="p-1 mb-2 hover:bg-[#184d47] hover:text-white"
+        type="submit"
+        onClick={handleSubmitButton}
+      >
         Search
       </button>
-
     </div>
   );
 }
