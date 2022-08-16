@@ -32,10 +32,10 @@ function App() {
     <div className="App flex justify-center content-center items-center">
       <div className="app-content-holder bg-white w-10/12 m-auto">
         <header>
-          <h1>Event Explorer</h1>
+          <h1 className="text-3xl font-bold">Event Explorer</h1>
           <nav>
-            <Link to="/">Event Search</Link>
-            <Link to="/bucket-list">Bucket List</Link>
+            <Link to="/" className="p-2 hover:underline">Event Search</Link>
+            <Link to="/bucket-list" className="p-2 hover:underline">Bucket List</Link>
           </nav>
         </header>
 

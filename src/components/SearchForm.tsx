@@ -22,6 +22,7 @@ export default function SearchForm({ changeEvents }: Props) {
   const [familyFriendly, setFamilyFriendly] = useState("");
   const [classificationName, setClassificationName] = useState("");
   const [eventId, setEventId] = useState("");
+  const [keyword, setKeyword] = useState('');
 
   useEffect(() => {
     getEvents();
@@ -69,6 +70,10 @@ export default function SearchForm({ changeEvents }: Props) {
     setClassificationName(e.target.value);
   }
 
+  function handleKeywordChange(e: React.ChangeEvent<HTMLInputElement>) {
+    setKeyword(e.target.value);
+  }
+
   function handleSubmitButton(e: React.FormEvent) {
     e.preventDefault();
     filterEvents({
@@ -76,6 +81,7 @@ export default function SearchForm({ changeEvents }: Props) {
       date: searchDate,
       includeFamily: familyFriendly,
       classificationName: classificationName,
+      keyword: keyword,
     }).then((response) => {
       changeEvents(response.data._embedded.events);
       console.log(classificationName);
@@ -90,14 +96,14 @@ export default function SearchForm({ changeEvents }: Props) {
   }
 
   return (
-    <div>
-      SearchForm
+    <div className="search-form-container flex-col justify-center align-center border-double border-4 border-[#184d47] m-[8px]">
       <form action="" className="bg-white">
         <div className="criteriaSection">
           <label htmlFor="zipcode">
             Enter zip code to find events near you
           </label>
           <input
+            className="zip-code"
             type="number"
             name="zipCode"
             id="zipcode"
@@ -119,7 +125,7 @@ export default function SearchForm({ changeEvents }: Props) {
         </div>
 
         <div className="criteriaSection">
-          <label htmlFor="familyFriendly">Family friendly only</label>
+          <label htmlFor="familyFriendly" className="p-2">Family friendly only</label>
           <input
             type="checkbox"
             name="familyFriendly"
@@ -128,9 +134,9 @@ export default function SearchForm({ changeEvents }: Props) {
             onChange={handleFamilyFriendlyChange}
           />
         </div>
-        <div className="classification">
+        <div className="criteriaSection">
           <label>Categories</label>
-          <select id="classificationName" onChange={handleGenreChange}>
+          <select id="classificationName" className='text-center' onChange={handleGenreChange}>
             <option value="">Any</option>
             <option value="sports">Sports</option>
             <option value="music">Music</option>
@@ -138,10 +144,24 @@ export default function SearchForm({ changeEvents }: Props) {
           </select>
         </div>
 
-        <button type="submit" onClick={handleSubmitButton}>
-          Search
-        </button>
+        <div className="criteriaSection">
+          <label className='p-2' htmlFor="keywordSearch">Enter a keyword</label>
+          <input 
+            className="keyword-text"
+            type='text'
+            name='keyword'
+            id='keyword'
+            value={keyword}
+            onChange={handleKeywordChange}
+          />
+        </div>
+
       </form>
+
+      <button className='p-1 mb-2 hover:bg-[#184d47] hover:text-white' type="submit" onClick={handleSubmitButton}>
+        Search
+      </button>
+
     </div>
   );
 }

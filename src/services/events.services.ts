@@ -28,6 +28,7 @@ export function filterEvents({
   date = "",
   postalCode = "",
   classificationName = "",
+  keyword = '',
 }: Filter) {
   return axios
     .get(
@@ -38,6 +39,7 @@ export function filterEvents({
           startDateTime: date,
           postalCode,
           classificationName,
+          keyword,
         },
       }
     )

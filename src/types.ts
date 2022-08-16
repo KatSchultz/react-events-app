@@ -36,4 +36,5 @@ export interface Filter {
   date?: string;
   postalCode?: string;
   classificationName: string;
+  keyword: string;
 }
