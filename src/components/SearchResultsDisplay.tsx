@@ -7,12 +7,14 @@ interface Props {
 	events: Event[];
 	bucketList: Event[];
 	addBucketListEvent: (event: Event) => void;
+	removeBucketListEvent: (id: string) => void;
 }
 
 export default function SearchResultsDisplay({
 	events,
 	bucketList,
 	addBucketListEvent,
+	removeBucketListEvent,
 }: Props) {
 	const displayEvents = [...events];
 	displayEvents.sort(
@@ -38,6 +40,7 @@ export default function SearchResultsDisplay({
 					bucketList={bucketList}
 					key={event.id}
 					addBucketListEvent={addBucketListEvent}
+					removeBucketListEvent={removeBucketListEvent}
 				/>
 			))}
 		</div>

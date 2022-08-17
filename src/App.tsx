@@ -52,6 +52,7 @@ function App() {
 								addBucketListEvent={addBucketListEvent}
 								bucketList={bucketList}
 								changeEvents={changeEvents}
+								removeBucketListEvent={removeBucketListEvent}
 							/>
 						}
 					/>

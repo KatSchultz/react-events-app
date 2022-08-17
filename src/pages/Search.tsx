@@ -4,6 +4,7 @@ import { Event } from "../types";
 
 interface Props {
 	addBucketListEvent: (event: Event) => void;
+	removeBucketListEvent: (id: string) => void;
 	bucketList: Event[];
 	changeEvents: (events: Event[]) => void;
 	events: Event[];
@@ -11,6 +12,7 @@ interface Props {
 
 export default function SearchPage({
 	addBucketListEvent,
+	removeBucketListEvent,
 	events,
 	bucketList,
 	changeEvents,
@@ -22,6 +24,7 @@ export default function SearchPage({
 				events={events}
 				bucketList={bucketList}
 				addBucketListEvent={addBucketListEvent}
+				removeBucketListEvent={removeBucketListEvent}
 			/>
 		</div>
 	);

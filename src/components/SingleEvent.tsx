@@ -6,12 +6,14 @@ interface Props {
 	event: Event;
 	bucketList: Event[];
 	addBucketListEvent: (event: Event) => void;
+	removeBucketListEvent: (id: string) => void;
 }
 
 export default function SingleEvent({
 	event,
 	bucketList,
 	addBucketListEvent,
+	removeBucketListEvent,
 }: Props) {
 	const navigate = useNavigate();
 
@@ -75,9 +77,10 @@ export default function SingleEvent({
 				<div
 					className="button font-titles"
 					style={{ backgroundColor: "#184d47", color: "#fad586" }}
+					onClick={() => removeBucketListEvent(event.id)}
 				>
 					<div>
-						On Your <br />
+						Remove from <br />
 						Bucket List
 					</div>
 				</div>
