@@ -31,7 +31,6 @@ export default function SearchForm({ events, changeEvents }: Props) {
 	// const [classificationName, setClassificationName] = useState("");
 	// const [eventId, setEventId] = useState("");
 	// const [keyword, setKeyword] = useState("");
-	const [noResults, setNoResults] = useState(false);
 
 	useEffect(() => {
 		getEvents();
@@ -115,9 +114,6 @@ export default function SearchForm({ events, changeEvents }: Props) {
 			keyword: userInput.keyword,
 		}).then((response) => {
 			changeEvents(response.data?._embedded?.events || []);
-			if (!response.data?._embedded) {
-				setNoResults(true);
-			}
 			// console.log(events);
 			console.log(response);
 		});
@@ -142,36 +138,39 @@ export default function SearchForm({ events, changeEvents }: Props) {
 		<div className="search-form-container flex-col justify-center align-center border-double border-4 border-[#184d47] m-[8px]">
 			<form action="" className="bg-white">
 				<div className="criteriaSection">
-					<label htmlFor="zipcode">
+					<label htmlFor="zipcode" className="font-info">
 						Enter zip code to find events near you
 					</label>
 					<input
-						className="zip-code"
+						className="zip-code font-info"
 						type="number"
 						name="zipCode"
 						id="zipcode"
-						placeholder="48082"
+						placeholder="48226"
 						onChange={handleChange}
 						value={userInput.zipCode}
 					/>
 				</div>
 
 				<div className="criteriaSection">
-					<label htmlFor="eventdate">Select date</label>
+					<label htmlFor="eventdate" className="font-info">
+						Select date
+					</label>
 					<input
 						type="date"
 						name="eventDate"
 						id="eventdate"
 						value={userInput.eventDate}
 						onChange={handleChange}
+						className="font-info"
 					/>
 				</div>
 
 				<div className="criteriaSection">
-					<label>Categories</label>
+					<label className="font-info">Categories</label>
 					<select
 						id="classificationName"
-						className="text-center"
+						className="text-center font-info"
 						name="classificationName"
 						onChange={handleGenreChange}
 					>
@@ -183,11 +182,11 @@ export default function SearchForm({ events, changeEvents }: Props) {
 				</div>
 
 				<div className="criteriaSection">
-					<label className="p-2" htmlFor="keywordSearch">
+					<label className="p-2 font-info" htmlFor="keywordSearch">
 						Enter a keyword
 					</label>
 					<input
-						className="keyword-text"
+						className="keyword-text font-info"
 						type="text"
 						name="keyword"
 						id="keyword"
@@ -198,7 +197,7 @@ export default function SearchForm({ events, changeEvents }: Props) {
 			</form>
 
 			<button
-				className="p-1 mb-2 hover:bg-[#184d47] hover:text-white"
+				className="p-1 mb-2 bg-[#96bb7c] hover:bg-[#184d47] hover:text-white font-info"
 				type="submit"
 				onClick={handleSubmitButton}
 			>

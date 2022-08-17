@@ -29,7 +29,9 @@ export default function SearchResultsDisplay({
 				alignItems: "center",
 			}}
 		>
-			{events.length === 0 && <h2>No results found</h2>}
+			{events.length === 0 && (
+				<h2 className="pb-3 text-xl">No results found</h2>
+			)}
 			{displayEvents.map((event) => (
 				<SingleEvent
 					event={event}
