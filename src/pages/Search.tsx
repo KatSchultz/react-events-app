@@ -3,26 +3,26 @@ import SearchResultsDisplay from "../components/SearchResultsDisplay";
 import { Event } from "../types";
 
 interface Props {
-  addBucketListEvent: (event: Event) => void;
-  bucketList: Event[];
-  changeEvents: (events: Event[]) => void;
-  events: Event[];
+	addBucketListEvent: (event: Event) => void;
+	bucketList: Event[];
+	changeEvents: (events: Event[]) => void;
+	events: Event[];
 }
 
 export default function SearchPage({
-  addBucketListEvent,
-  events,
-  bucketList,
-  changeEvents,
+	addBucketListEvent,
+	events,
+	bucketList,
+	changeEvents,
 }: Props) {
-  return (
-    <div>
-      <SearchForm changeEvents={changeEvents} />
-      <SearchResultsDisplay
-        events={events}
-        bucketList={bucketList}
-        addBucketListEvent={addBucketListEvent}
-      />
-    </div>
-  );
+	return (
+		<div>
+			<SearchForm changeEvents={changeEvents} events={events} />
+			<SearchResultsDisplay
+				events={events}
+				bucketList={bucketList}
+				addBucketListEvent={addBucketListEvent}
+			/>
+		</div>
+	);
 }
