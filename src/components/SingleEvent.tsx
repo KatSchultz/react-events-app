@@ -57,7 +57,7 @@ export default function SingleEvent({
           <a
             href={event.url}
             target="blank"
-            className="font-info hover:text-[#96bb7c]"
+            className="font-info hover:text-[#96bb7c] underline"
           >
             See Tickets
           </a>

@@ -32,7 +32,7 @@ function App() {
     <div className="App flex justify-center content-center items-center ">
       <div className="app-content-holder bg-white w-10/12 m-auto h-5/6 m-10 p-10">
         <header>
-          <h1 className="text-3xl font-titles font-bold">Event Explorer</h1>
+          <h1 className="text-4xl font-titles font-bold m-0 pb-4 underline">Event Explorer</h1>
           <nav className="flex justify-around">
             <Link
               to="/"
