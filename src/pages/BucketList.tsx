@@ -10,7 +10,9 @@ export default function BucketList({ bucketList, removeEvent }: Props) {
   return (
     <div className="container">
       <div>Bucket List</div>
-      {bucketList.length === 0 && <div>Nothing on your Bucket List!</div>}
+      {bucketList.length === 0 && (
+        <div className="font-info">Nothing on your Bucket List!</div>
+      )}
 
       {bucketList.map((event) => (
         <BucketListItem
