@@ -31,18 +31,18 @@ export default function BucketListItem({ event, removeEvent }: Props) {
 
   return (
     <div className="single-event">
-      <div className="date-details-container">
-        <div className="date font-info">
+      <div className="date-details-container lg:justify-around w-full">
+        <div className="date font-info text-center">
           <div>
             {month} {day}, {year},
           </div>
           <div>{time}</div>
         </div>
-        <div className="event-details">
+        <div className="event-details-bucket ">
           <div className="event-name font-titles" onClick={goToEventDetails}>
             {event.name}
           </div>
-          <div className="location-and-tickets">
+          <div className="location-and-tickets flex flex-col md:flex-row lg:flex-row justify-around items-center w-full">
             <div className="image">
               <img
                 src={event.images[0].url}

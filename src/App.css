@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 .App {
   min-height: 100vh;
   text-align: center;
@@ -6,6 +10,7 @@
   background-position: center center;
   background-attachment: fixed;
   background-size: cover;
+  overflow: hidden;
 }
 h1,
 h2,

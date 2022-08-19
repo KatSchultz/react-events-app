@@ -13,7 +13,7 @@
 }
 
 .date-details-container {
-  width: 70%;
+  width: 100%;
   display: flex;
   flex-direction: column;
 }
@@ -25,8 +25,6 @@
   /* background-color: #d6efc7; */
   padding: 0.5rem 1rem;
   border-bottom: solid 1px #96bb7c;
-
-  /* width: 20%; */
 }
 .event-details {
   width: 100%;
@@ -45,7 +43,8 @@
 .button {
   font-weight: 700;
   font-size: 1.2rem;
-  width: 20%;
+  /* max-width: 30%; */
+
   padding: 1rem;
   display: flex;
   justify-content: center;
