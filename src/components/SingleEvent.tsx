@@ -62,29 +62,29 @@ export default function SingleEvent({
             See Tickets
           </a>
         </div>
+        {onBucketList === undefined ? (
+          <div
+            className="button font-titles"
+            onClick={() => bucketClickHandler(event)}
+          >
+            <div>
+              Add to <br />
+              Bucket List
+            </div>
+          </div>
+        ) : (
+          <div
+            className="button font-titles"
+            style={{ backgroundColor: "#184d47", color: "#fad586" }}
+            onClick={() => removeBucketListEvent(event.id)}
+          >
+            <div>
+              Remove from <br />
+              Bucket List
+            </div>
+          </div>
+        )}
       </div>
-      {onBucketList === undefined ? (
-        <div
-          className="button font-titles"
-          onClick={() => bucketClickHandler(event)}
-        >
-          <div>
-            Add to <br />
-            Bucket List
-          </div>
-        </div>
-      ) : (
-        <div
-          className="button font-titles"
-          style={{ backgroundColor: "#184d47", color: "#fad586" }}
-          onClick={() => removeBucketListEvent(event.id)}
-        >
-          <div>
-            Remove from <br />
-            Bucket List
-          </div>
-        </div>
-      )}
     </div>
   );
 }

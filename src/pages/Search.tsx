@@ -18,7 +18,7 @@ export default function SearchPage({
   changeEvents,
 }: Props) {
   return (
-    <div>
+    <div className="w-full">
       <SearchForm changeEvents={changeEvents} events={events} />
       <div className="">
         <SearchResultsDisplay

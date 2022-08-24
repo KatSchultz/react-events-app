@@ -9,7 +9,9 @@ interface Props {
 export default function BucketList({ bucketList, removeEvent }: Props) {
   return (
     <div className="container">
-      <div>Bucket List</div>
+      <div className="font-bold font-titles text-[#184d47] text-2xl">
+        Bucket List
+      </div>
       {bucketList.length === 0 && (
         <div className="font-info">Nothing on your Bucket List!</div>
       )}

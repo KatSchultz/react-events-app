@@ -38,7 +38,7 @@ export default function BucketListItem({ event, removeEvent }: Props) {
           </div>
           <div>{time}</div>
         </div>
-        <div className="event-details-bucket ">
+        <div className="event-details-bucket w-full">
           <div className="event-name font-titles" onClick={goToEventDetails}>
             {event.name}
           </div>
@@ -57,15 +57,15 @@ export default function BucketListItem({ event, removeEvent }: Props) {
             <a
               href={event.url}
               target="blank"
-              className="font-info hover:text-[#96bb7c]"
+              className="font-info hover:text-[#96bb7c] underline"
             >
               See Tickets
             </a>
           </div>
         </div>
-      </div>
-      <div className="button font-titles px-2" onClick={removeEventHandler}>
-        <div>Remove Event</div>
+        <div className="button font-titles px-2" onClick={removeEventHandler}>
+          <div>Remove Event</div>
+        </div>
       </div>
     </div>
   );

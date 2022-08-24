@@ -31,26 +31,26 @@ function App() {
   return (
     <div className="App flex flex-col justify-center">
       <header className=" bg-[#184d47]">
-        <h1 className="text-4xl font-titles font-bold m-0 pb-4 underline text-white">
+        <h1 className="text-4xl font-titles font-bold m-0 pb-2 underline text-white">
           Event Explorer
         </h1>
         <nav className="flex justify-around flex-row">
           <Link
             to="/"
-            className="p-2 hover:underline font-info text-white px-10 rounded-xl bg-[#184d47] w-full"
+            className="p-2 hover:underline font-info text-xl text-white px-10 rounded-xl bg-[#184d47] w-full"
           >
             <div>Event Search</div>
           </Link>
 
           <Link
             to="/bucket-list"
-            className="p-2 hover:underline font-info text-white px-10 rounded-xl bg-[#184d47] w-full"
+            className="p-2 hover:underline font-info text-xl text-white px-10 rounded-xl bg-[#184d47] w-full"
           >
             <div>Bucket List</div>
           </Link>
         </nav>
       </header>
-      <div className="app-content-holder flex justify-center content-center items-center m-auto  bg-white w-10/12  h-5/6 p-10">
+      <div className="app-content-holder flex justify-center content-center items-center m-auto  bg-white w-10/12  h-5/6 px-10 py-4">
         <Routes>
           <Route
             path="/"
