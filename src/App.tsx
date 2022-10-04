@@ -50,7 +50,7 @@ function App() {
           </Link>
         </nav>
       </header>
-      <div className="app-content-holder flex justify-center content-center items-center m-auto  bg-white w-10/12  h-5/6 px-10 py-4">
+      <div className="app-content-holder flex justify-center content-center items-center mx-auto  bg-white w-10/12  h-5/6 px-10 pb-4">
         <Routes>
           <Route
             path="/"

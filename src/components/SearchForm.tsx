@@ -27,11 +27,6 @@ export default function SearchForm({ events, changeEvents }: Props) {
 
   useEffect(() => {
     getEvents();
-    // getEventById();
-    // filterEventsByKeyword();
-    // filterEventsByZipCode();
-    // console.log(familyFriendly);
-    // console.log(familyFriendlyValue);
   }, []);
 
   function getEvents() {
@@ -40,26 +35,6 @@ export default function SearchForm({ events, changeEvents }: Props) {
       changeEvents(response.data._embedded.events);
     });
   }
-
-  // function getEventById() {
-  // 	fetchEventById(eventId).then((response) => console.log(response.data))
-  // }
-
-  // function filterEventsByKeyword() {
-  // 	fetchEventByKeyword().then(response => console.log(response.data._embedded.events))
-  // }
-
-  // function filterEventsByZipCode() {
-  //   fetchEventByZipCode(zipCode).then((response) => console.log(response));
-  // }
-
-  // function handleZipCodeChange(e: React.ChangeEvent<HTMLInputElement>) {
-  //   setUserInput({
-  //     ...userInput,
-  //     zipCode: e.target.value,
-  //   });
-  //   // setZipCode(e.target.value);
-  // }
 
   function handleDateChange(e: React.ChangeEvent<HTMLInputElement>) {
     // setUserInput({
@@ -71,26 +46,12 @@ export default function SearchForm({ events, changeEvents }: Props) {
     setSearchDate(e.target.value + "T00:00:01Z");
   }
 
-  // function handleFamilyFriendlyChange(e: React.ChangeEvent<HTMLInputElement>) {
-  //   setFamilyFriendlyValue(e.target.checked);
-  //   e.target.checked ? setFamilyFriendly("only") : setFamilyFriendly("no");
-  // }
-
   function handleGenreChange(e: React.ChangeEvent<HTMLSelectElement>) {
     setUserInput({
       ...userInput,
       classificationName: e.target.value,
     });
-    // setClassificationName(e.target.value);
   }
-
-  // function handleKeywordChange(e: React.ChangeEvent<HTMLInputElement>) {
-  //   setUserInput({
-  //     ...userInput,
-  //     keyword: e.target.value,
-  //   });
-  //   // setKeyword(e.target.value);
-  // }
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     setUserInput({ ...userInput, ...{ [e.target.name]: e.target.value } });
@@ -101,17 +62,12 @@ export default function SearchForm({ events, changeEvents }: Props) {
     e.preventDefault();
     filterEvents({
       postalCode: userInput.zipCode,
-      // date: userInput.searchDate,
-      // includeFamily:  userInput.familyFriendly,
       classificationName: userInput.classificationName,
       keyword: userInput.keyword,
       date: searchDate,
     }).then((response) => {
       changeEvents(response.data?._embedded?.events || []);
-      // console.log(events);
-      console.log(response);
     });
-    // clearFormValues();
   }
 
   function clearFormValues() {
@@ -120,14 +76,10 @@ export default function SearchForm({ events, changeEvents }: Props) {
       classificationName: "",
       keyword: userInput.keyword,
     });
-
-    // setZipCode("");
-    // setEventDate("");
-    // setFamilyFriendlyValue(false);
   }
 
   return (
-    <div className="search-form-container flex-col justify-center align-center border-double border-4 border-[#184d47] m-[8px]">
+    <div className="search-form-container flex-col justify-center align-center border-b-4  border-[#184d47] m-[8px]">
       <form action="" className="bg-white">
         <div className="criteriaSection">
           <label htmlFor="zipcode" className="font-info">
@@ -163,7 +115,7 @@ export default function SearchForm({ events, changeEvents }: Props) {
           <label className="font-info">Categories</label>
           <select
             id="classificationName"
-            className="text-center font-info"
+            className="text-center font-info border-solid border-[#184d47]"
             name="classificationName"
             onChange={handleGenreChange}
           >
@@ -190,7 +142,7 @@ export default function SearchForm({ events, changeEvents }: Props) {
       </form>
 
       <button
-        className="p-1 mb-2 bg-[#96bb7c] hover:bg-[#184d47] hover:text-white font-info"
+        className="p-2 mb-2 bg-[#96bb7c] hover:bg-[#184d47] hover:text-white font-info"
         type="submit"
         onClick={handleSubmitButton}
       >
