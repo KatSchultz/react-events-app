@@ -54,6 +54,9 @@ export default function SearchForm({ events, changeEvents }: Props) {
   }
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
+    if (!e.target.checked) {
+      setUserInput({ ...userInput, ...{ [e.target.name]: "" } });
+    }
     setUserInput({ ...userInput, ...{ [e.target.name]: e.target.value } });
     // console.log(userInput.zipCode);
   }
